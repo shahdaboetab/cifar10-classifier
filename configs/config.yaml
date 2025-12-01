@@ -1,0 +1,42 @@
+# Configuration settings for CIFAR-10 Classifier
+
+model:
+  type: "CNN"
+  input_shape: [32, 32, 3]
+  num_classes: 10
+  architecture:
+    - layer: "Conv2D"
+      filters: 32
+      kernel_size: 3
+      activation: "relu"
+    - layer: "MaxPooling2D"
+      pool_size: 2
+    - layer: "Conv2D"
+      filters: 64
+      kernel_size: 3
+      activation: "relu"
+    - layer: "MaxPooling2D"
+      pool_size: 2
+    - layer: "Flatten"
+    - layer: "Dense"
+      units: 128
+      activation: "relu"
+    - layer: "Dense"
+      units: 10
+      activation: "softmax"
+
+training:
+  batch_size: 64
+  epochs: 20
+  learning_rate: 0.001
+  optimizer: "adam"
+  loss_function: "sparse_categorical_crossentropy"
+
+data:
+  train_data_path: "data/train"
+  test_data_path: "data/test"
+  validation_split: 0.2
+
+logging:
+  log_dir: "logs"
+  log_level: "INFO"
